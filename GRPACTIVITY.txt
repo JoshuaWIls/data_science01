@@ -1,0 +1,75 @@
+using System;
+
+namespace ConsoleApp15
+{
+    class Node
+    {
+        public int data;
+        public Node left, right;
+
+        public Node(int item)
+        {
+            this.data = item;
+            this.left = this.right = null;
+        }
+    }
+
+    internal class Program
+    {
+        Node root;
+
+        void PreorderTraversal(Node node)
+        {
+            if (node == null)
+            {
+                return;
+            }
+            Console.WriteLine(node.data + " ");
+            PreorderTraversal(node.left);
+            PreorderTraversal(node.right);
+        }
+
+        void InorderTraversal(Node node)
+        {
+            if (node == null)
+            {
+                return;
+            }
+            InorderTraversal(node.left);
+            Console.WriteLine(node.data + " ");
+            InorderTraversal(node.right);
+        }
+
+        void PostorderTraversal(Node node)
+        {
+            if (node == null)
+            {
+                return;
+            }
+            PostorderTraversal(node.left);
+            PostorderTraversal(node.right);
+            Console.WriteLine(node.data + " ");
+        }
+
+        public static void Main(string[] args)
+        {
+            Program tree = new Program();
+            tree.root = new Node(1);
+            tree.root.left = new Node(2);
+            tree.root.right = new Node(3);
+            tree.root.right.left = new Node(7);
+            tree.root.right.right = new Node(11);
+            tree.root.left.left = new Node(4);
+
+            Console.WriteLine("\nBinary Tree:");
+            Console.WriteLine("Inorder traversal:");
+            tree.InorderTraversal(tree.root);
+            Console.WriteLine("\n\n");
+            Console.WriteLine("Preorder traversal:");
+            tree.PreorderTraversal(tree.root);
+            Console.WriteLine("\n\n");
+            Console.WriteLine("Postorder traversal:");
+            tree.PostorderTraversal(tree.root);
+        }
+    }
+}
